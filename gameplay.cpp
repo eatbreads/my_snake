@@ -1,9 +1,11 @@
 #include "gameplay.h"
 
 // GamePlay类的构造函数
-GamePlay::GamePlay(QWidget *parent) : QWidget(parent)
+GamePlay::GamePlay(QWidget *parent) : QWidget(parent),m_Food(m_obstacle.arr)
 {
-    initMenu();//
+    initMenu();
+    m_obstacle.show();
+    is_throw=ConfigFile::getInstance().getConfig("is_throw");
     m_highScore=ConfigFile::getInstance().getConfig("highest_score").toInt();
     // 设置窗口标题
     this->setWindowTitle(WINDOW_NAME);
@@ -57,14 +59,18 @@ void GamePlay::restart()
     qDebug()<<"restart";
     m_CurrentScore = 0;
     // m_isPaused=false;
+    is_throw=ConfigFile::getInstance().getConfig("is_throw");
     m_Snake.init();
     m_isPaused=false;
 }
 // 游戏主运行函数
 void GamePlay::gameRun()
 {
-    m_Snake.nextSnake(); // 蛇的下一步移动
+    if(is_throw=="no")m_Snake.nextSnake(); // 蛇的下一步移动
+    else m_Snake.nextSnake_throw();
+
     isEat(); // 检查是否吃到食物
+    is_Collision();
     if (!this->eatFood)
     {
         m_Snake.eraseTail(); // 没有吃到食物则删除蛇尾
@@ -97,10 +103,19 @@ void GamePlay::isEat()
     {
         this->eatFood = true;
         this->m_CurrentScore ++;
-        m_Food.giveFood(m_Snake.m_Body); // 生成新的食物
+        m_Food.giveFood(m_Snake.m_Body,m_obstacle.arr); // 生成新的食物
     }
 }
 
+void GamePlay::is_Collision()
+{
+    int x = m_Snake.m_Head.getY();
+    int y = m_Snake.m_Head.getX();
+    if(m_obstacle.hasObstacle(x,y))
+    {
+        m_Snake.m_CantCon=true;
+    }
+}
 // 绘制游戏界面
 void GamePlay::paintEvent(QPaintEvent *)
 {
@@ -149,6 +164,22 @@ void GamePlay::paintEvent(QPaintEvent *)
     {
         painter.drawRect(m_Food.m_Point.getX()*GAME_STEP, m_Food.m_Point.getY()*GAME_STEP, GAME_STEP, GAME_STEP);
     }
+    //绘制障碍物
+    brush.setColor(QColor(89,50,50,120));
+    painter.setBrush(brush);
+
+    for(int i = 0; i< GAME_HEIGHT;i++)
+    {
+        for(int j = 0; j< GAME_WIDTH;j++)
+        {
+            if(m_obstacle.hasObstacle(i,j))
+            painter.drawRect(j*GAME_STEP, i*GAME_STEP, GAME_STEP, GAME_STEP);
+        }//这边x轴是向下的好像,所以要这样设计
+
+    }
+
+
+
     // 设置网格线的颜色并绘制网格
     painter.setPen(QPen(QColor(79,79,79,80)));
     //绘制竖线
@@ -229,17 +260,7 @@ void GamePlay::paint_CurrentScore(QPainter & painter)
     QString currentScoreText = QString("分数: %1").arg(m_CurrentScore);
     painter.drawText(scoreX, scoreY, currentScoreText);
     scoreY += lineHeight;
-    // void printHighScores(const QStringList &highScores) {
-    //     foreach (const QString &line, highScores) {
-    //         QStringList parts = line.split(":", Qt::SkipEmptyParts);
-    //         if (parts.size() == 2) {
-    //             QString rank = parts[0];
-    //             QString score = parts[1];
-    //             qDebug() << rank << ":" << score;
-    //         }
-    //     }
-    // }
-    // 绘制历史最高分数
+
 
 
     QString highScoreText = QString("历史最高分数:%1").arg(m_highScore);

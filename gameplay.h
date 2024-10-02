@@ -15,6 +15,7 @@
 #include"food.h"
 #include "gamemenu.h"
 #include "ConfigFile.h"
+#include "obstacle.h"
 //int m_HighScore = 0;
 class GamePlay : public QWidget
 {
@@ -23,16 +24,19 @@ public:
     MyPushButton *m_BackWidget;
 
     Snake m_Snake;
-
+    Obstacle m_obstacle;//这个声明顺序要在food上面,因为要传入food
     Food m_Food;
 
     bool eatFood=false;
     //暂停之后会调上来这个窗口
     bool m_isPaused=true;
+    //
+    QString is_throw="no";
+
     GameMenu *m_gameMenu;
 
     QTimer * gameTimer;
-
+    void is_Collision();
     void gameRun();
 
     void isEat();
@@ -57,6 +61,9 @@ signals:
     void gameReturn();
 
 public slots:
+
+private:
+
 };
 
 #endif // GAMEPLAY_H

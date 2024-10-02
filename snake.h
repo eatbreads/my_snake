@@ -28,7 +28,7 @@ public:
 
     void init();
     void nextSnake();
-
+    void nextSnake_throw();
     void eraseTail();
 
     bool m_CantCon=false;

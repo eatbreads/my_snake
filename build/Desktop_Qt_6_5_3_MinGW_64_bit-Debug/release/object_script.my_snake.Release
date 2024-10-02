@@ -6,6 +6,7 @@ release/gameskin.o
 release/main.o
 release/mypoint.o
 release/mypushbutton.o
+release/obstacle.o
 release/snake.o
 release/widget.o
 release/windowscheduler.o

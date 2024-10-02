@@ -43,7 +43,36 @@ void Snake::nextSnake()
     // 注意：在实际应用中，您可能还需要移除蛇身的第一个元素（即最尾部的元素），以保持蛇身的长度不变
     // 例如：m_Body.pop_front(); // 但由于QList不支持pop_front()，您可能需要其他逻辑来处理
 }
+void Snake::nextSnake_throw()
+{
+    int tempX = m_Head.getX(); // 获取当前蛇头的X坐标
+    int tempY = m_Head.getY(); // 获取当前蛇头的Y坐标
 
+    // 根据蛇的当前方向更新tempX和tempY
+    if (m_Direction == 'w') { tempY = (tempY - 1 + GAME_HEIGHT) % GAME_HEIGHT; } // 向上移动，可能穿过上边界回到下边界
+    else if (m_Direction == 'a') { tempX = (tempX - 1 + GAME_WIDTH) % GAME_WIDTH; } // 向左移动，可能穿过左边界回到右边界
+    else if (m_Direction == 's') { tempY = (tempY + 1) % GAME_HEIGHT; } // 向下移动，可能穿过下边界回到上边界（但由于是取模，直接+1即可）
+    else if (m_Direction == 'd') { tempX = (tempX + 1) % GAME_WIDTH; } // 向右移动，可能穿过右边界回到左边界（同理）
+
+    // 检查新坐标是否与蛇身的其他部分重合（不包括蛇头本身）
+    for (QList<MyPoint>::iterator val = m_Body.begin() + 1; val != m_Body.end(); ++val)
+    {
+        if (val->getX() == tempX && val->getY() == tempY)
+        {
+            m_CantCon = true; // 如果与蛇身重合，设置游戏结束标志
+            return; // 结束函数
+        }
+    }
+    // 如果新坐标不与蛇身重合，则更新蛇的位置
+    MyPoint nextHead(tempX, tempY); // 创建新的蛇头点
+
+    // 添加新蛇头到蛇身末尾
+    m_Body.push_back(nextHead);
+    m_Head = nextHead; // 更新蛇头为新位置
+
+
+
+}
 void Snake::init()
 {
     m_CantCon=false;

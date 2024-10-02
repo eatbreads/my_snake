@@ -6,12 +6,13 @@
 #include"config.h"
 #include<ctime>
 #include<iostream>
+#include <vector>
 class Food
 {
 public:
     MyPoint m_Point; // 当前食物的位置点
 
-    bool arr[GAME_HEIGHT][GAME_WIDTH];// 一个二维布尔数组，用于标记游戏区域中哪些位置已有食物或障碍物
+    bool arr[GAME_HEIGHT][GAME_WIDTH];// 一个二维布尔数组，用于标记游戏区域中哪些位置已有食物
     //下面这个是一维的
     MyPoint m_PointArr[GAME_WIDTH*GAME_HEIGHT+10];// 一个MyPoint数组，用于临时存储可能的食物位置
 
@@ -19,9 +20,9 @@ public:
 
     bool m_NoFood;// 标记是否没有可用的食物位置
 
-    void giveFood(QList<MyPoint>&v);// 成员函数，用于在给定的QList<MyPoint>中放置食物，并更新当前食物位置
+    void giveFood(QList<MyPoint>&v,std::vector<std::vector<bool>>& Obstacles);// 成员函数，用于在给定的QList<MyPoint>中放置食物，并更新当前食物位置
 
-    Food();
+    Food(std::vector<std::vector<bool>>& obstacles);
 };
 
 #endif // FOOD_H

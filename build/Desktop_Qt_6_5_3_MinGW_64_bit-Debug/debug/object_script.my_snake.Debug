@@ -6,6 +6,7 @@ debug/gameskin.o
 debug/main.o
 debug/mypoint.o
 debug/mypushbutton.o
+debug/obstacle.o
 debug/snake.o
 debug/widget.o
 debug/windowscheduler.o

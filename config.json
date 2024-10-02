@@ -1,6 +1,9 @@
 {
     "difficulty": "hard",
-    "highest_score": "7",
-    "skin_color": "red",
+    "highest_score": "19",
+    "is_rand": "yes",
+    "is_throw": "yes",
+    "obstacle_num": "5",
+    "skin_color": "yellow",
     "speed": "50"
 }

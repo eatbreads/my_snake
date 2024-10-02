@@ -17,6 +17,7 @@ SOURCES += \
     main.cpp \
     mypoint.cpp \
     mypushbutton.cpp \
+    obstacle.cpp \
     snake.cpp \
     widget.cpp \
     windowscheduler.cpp
@@ -32,6 +33,7 @@ HEADERS += \
     gameskin.h \
     mypoint.h \
     mypushbutton.h \
+    obstacle.h \
     snake.h \
     widget.h \
     windowscheduler.h

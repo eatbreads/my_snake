@@ -20,10 +20,10 @@ void Obstacle::placeObstacleRandomly()
         arr[tempH][tempW]=true;
     }
     //把蛇一开始的位置去掉
-    arr[0][3]=false;
-    arr[0][2]=false;
-    arr[0][1]=false;
-    arr[0][0]=false;
+    for(int i = 0; i<GAME_WIDTH; i++)
+    {
+        arr[0][i]=false;
+    }
 }
 
 void Obstacle::placeObstacleFromString(const QString& obstacleString)

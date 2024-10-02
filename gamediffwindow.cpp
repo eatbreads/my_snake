@@ -1,7 +1,7 @@
 #include "GameDiffWindow.h"
 
-GameDiffWindow::GameDiffWindow(QWidget *parent) :
-    QWidget(parent)
+GameDiffWindow::GameDiffWindow(GamePlay* m_gameplay,QWidget *parent) :
+    QWidget(parent),m_gamePlay(m_gameplay)
 {
 
     this->setWindowTitle(WINDOW_NAME);
@@ -91,22 +91,32 @@ void GameDiffWindow::setbuttonSize(QPushButton* button,int height)
 void GameDiffWindow::seteasy()
 {
     ConfigFile::getInstance().setConfig("difficulty","easy");
+    ConfigFile::getInstance().setConfig("speed","100");
     showSuccessMessage("难度设置为简单");
+    m_gamePlay->setDifficulty();
 }
 void GameDiffWindow::setmedium()
 {
     ConfigFile::getInstance().setConfig("difficulty","medium");
+    ConfigFile::getInstance().setConfig("speed","80");
     showSuccessMessage("难度设置为中等");
+    m_gamePlay->setDifficulty();
 }
 void GameDiffWindow::sethard()
 {
-    ConfigFile::getInstance().setConfig("difficulty","hard");
+    ConfigFile::getInstance().setConfig("difficulty","hard");//这个难度应该要跟着对应的尺寸设计障碍物
+    ConfigFile::getInstance().setConfig("speed","50");
+    //ConfigFile::getInstance().setConfig("obstacle_num","50");
     showSuccessMessage("难度设置为困难");
+    m_gamePlay->setDifficulty();
 }
 void GameDiffWindow::sethell()
 {
     ConfigFile::getInstance().setConfig("difficulty","hell");
+    ConfigFile::getInstance().setConfig("speed","30");
+    //ConfigFile::getInstance().setConfig("obstacle_num","200");
     showSuccessMessage("难度设置为地狱");
+    m_gamePlay->setDifficulty();
 }
 void GameDiffWindow::onBackButtonClicked()
 {

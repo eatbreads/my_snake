@@ -38,14 +38,14 @@ private slots:
     void handleGameNew();
     void handleSetSkin();
     void handleSetDif();
-
+    void re_register_GamePlayWindow();
 private:
-    QWidget *currentWindow;
-    Widget *gameStartWindow;
-    GamePlay *gamePlayWindow;
-    GameEnd *gameEndWindow;
-    GameSkin *gameSkinWindow;
-    GameDiffWindow *gameDiffWindow;
+    QWidget *currentWindow=nullptr;
+    Widget *gameStartWindow=nullptr;
+    GamePlay *gamePlayWindow=nullptr;
+    GameEnd *gameEndWindow=nullptr;
+    GameSkin *gameSkinWindow=nullptr;
+    GameDiffWindow *gameDiffWindow=nullptr;
 
     void initializeWindows();
     void showWindow(QWidget *window);

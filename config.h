@@ -9,8 +9,8 @@
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 // 定义游戏区域的尺寸和更新步长
-#define GAME_WIDTH 20
-#define GAME_HEIGHT 15
-#define GAME_STEP 30
-
+#define GAME_WIDTH 40
+#define GAME_HEIGHT 30
+#define GAME_STEP 20
+//这边GAME_WIDTH*GAME_STEP不可以大于WINDOW_WIDTH
 //E:\\qt_project\\eat_snake\\my_snake

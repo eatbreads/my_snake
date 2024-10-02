@@ -10,12 +10,14 @@
 #include <QMessageBox>
 #include "config.h"
 #include "ConfigFile.h"
+#include "gameplay.h"
+class GamePlay;
 class GameDiffWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit GameDiffWindow(QWidget *parent = nullptr);
+    explicit GameDiffWindow(GamePlay * m_gameplay,QWidget *parent = nullptr);
 
 private slots:
     void seteasy();
@@ -38,6 +40,7 @@ private:
     QPushButton *hellButton;
     QPushButton *backButton;
     QPushButton *confirmButton;
+    GamePlay* m_gamePlay;
 };
 
 #endif // GAMEDIFFWINDOW_H

@@ -268,3 +268,12 @@ void GamePlay::paint_CurrentScore(QPainter & painter)
 
 
 }
+void GamePlay::setDifficulty() {
+    int interval;
+    QString temp = ConfigFile::getInstance().getConfig("difficulty");
+    if(temp=="easy") interval=100;
+    else if(temp =="medium") interval=80;
+    else if(temp == "hard") interval =50;
+    else interval = 30;
+    gameTimer->setInterval(interval);
+}

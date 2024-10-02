@@ -52,7 +52,7 @@ public:
     void paint_CurrentScore(QPainter & painter);
 
     void paint_HighScore(QPainter & painter);
-
+    void setDifficulty() ;
     explicit GamePlay(QWidget *parent = nullptr);
 signals:
 

@@ -29,6 +29,7 @@ GameDiffWindow::GameDiffWindow(QWidget *parent) :
 
     // 将难度按钮添加到水平布局中
     QHBoxLayout *difficultyLayout = new QHBoxLayout;
+    QHBoxLayout *buttonLayout = new QHBoxLayout();
     difficultyLayout->addWidget(easyButton);
     difficultyLayout->addWidget(mediumButton);
     difficultyLayout->addWidget(hardButton);
@@ -37,7 +38,9 @@ GameDiffWindow::GameDiffWindow(QWidget *parent) :
     // 返回和确定按钮
     backButton = new QPushButton("返回", this);
     confirmButton = new QPushButton("确定", this);
-
+    //把返回添加到布局
+    buttonLayout->addWidget(backButton);
+    buttonLayout->addWidget(confirmButton);
     // 设置按钮图标
     setButtonIcon(backButton, ":/images/back.png");
     setButtonIcon(confirmButton, ":/images/confirm.png");
@@ -48,24 +51,20 @@ GameDiffWindow::GameDiffWindow(QWidget *parent) :
     setbuttonSize(hellButton,300);
 
     setbuttonSize(backButton,150);
-    // 将返回和确定按钮添加到水平布局中
-    QHBoxLayout *bottomLayout = new QHBoxLayout;
-    bottomLayout->addStretch(1);  // 添加间隔
-    bottomLayout->addWidget(backButton);
-    bottomLayout->addWidget(confirmButton);
+
 
     // 将所有布局添加到主布局中
     mainLayout->addLayout(difficultyLayout);
     mainLayout->addStretch(1);  // 添加间隔
-    mainLayout->addLayout(bottomLayout);
+    mainLayout->addLayout(buttonLayout);
 
     setLayout(mainLayout);
 
     // 连接信号和槽
-    connect(easyButton, &QPushButton::clicked, this, &GameDiffWindow::onDifficultyButtonClicked);
-    connect(mediumButton, &QPushButton::clicked, this, &GameDiffWindow::onDifficultyButtonClicked);
-    connect(hardButton, &QPushButton::clicked, this, &GameDiffWindow::onDifficultyButtonClicked);
-    connect(hellButton, &QPushButton::clicked, this, &GameDiffWindow::onDifficultyButtonClicked);
+    connect(easyButton, &QPushButton::clicked, this, &GameDiffWindow::seteasy);
+    connect(mediumButton, &QPushButton::clicked, this, &GameDiffWindow::setmedium);
+    connect(hardButton, &QPushButton::clicked, this, &GameDiffWindow::sethard);
+    connect(hellButton, &QPushButton::clicked, this, &GameDiffWindow::sethell);
     connect(backButton, &QPushButton::clicked, this, &GameDiffWindow::onBackButtonClicked);
     connect(confirmButton, &QPushButton::clicked, this, &GameDiffWindow::onConfirmButtonClicked);
 }
@@ -89,22 +88,37 @@ void GameDiffWindow::setbuttonSize(QPushButton* button,int height)
     button->setMinimumSize(buttonSize); // 设置最小尺寸
     confirmButton->setMinimumSize(buttonSize); // 设置最小尺寸
 }
-void GameDiffWindow::onDifficultyButtonClicked()
+void GameDiffWindow::seteasy()
 {
-    QPushButton *clickedButton = qobject_cast<QPushButton*>(sender());
-    if (clickedButton) {
-        QString difficulty = clickedButton->text();
-        // 处理难度选择
-    }
+    ConfigFile::getInstance().setConfig("difficulty","easy");
+    showSuccessMessage("难度设置为简单");
 }
-
+void GameDiffWindow::setmedium()
+{
+    ConfigFile::getInstance().setConfig("difficulty","medium");
+    showSuccessMessage("难度设置为中等");
+}
+void GameDiffWindow::sethard()
+{
+    ConfigFile::getInstance().setConfig("difficulty","hard");
+    showSuccessMessage("难度设置为困难");
+}
+void GameDiffWindow::sethell()
+{
+    ConfigFile::getInstance().setConfig("difficulty","hell");
+    showSuccessMessage("难度设置为地狱");
+}
 void GameDiffWindow::onBackButtonClicked()
 {
-    // 处理返回按钮点击事件
-    close();  // 或者执行其他返回操作
+    emit gameReturn();
 }
 
 void GameDiffWindow::onConfirmButtonClicked()
 {
     // 处理确定按钮点击事件
+    emit gameReturn();
+}
+void GameDiffWindow::showSuccessMessage(const QString &message)
+{
+    QMessageBox::information(this, "设置成功", message);
 }

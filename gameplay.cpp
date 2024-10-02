@@ -4,6 +4,7 @@
 GamePlay::GamePlay(QWidget *parent) : QWidget(parent)
 {
     initMenu();//
+    m_highScore=ConfigFile::getInstance().getConfig("highest_score").toInt();
     // 设置窗口标题
     this->setWindowTitle(WINDOW_NAME);
     // 设置窗口的固定大小
@@ -16,10 +17,10 @@ GamePlay::GamePlay(QWidget *parent) : QWidget(parent)
 
     // 初始化游戏定时器
     gameTimer = new QTimer(this);
-    gameTimer->start(60); // 设置定时器事件每100毫秒触发一次
+    gameTimer->start(ConfigFile::getInstance().getConfig("speed").toInt()); // 设置定时器事件每100毫秒触发一次
     // 延迟500毫秒后连接定时器信号到游戏运行槽,表示500毫秒之后计时器开始运行
     QTimer::singleShot(500, this, [=](){
-        connect(gameTimer, &QTimer::timeout, [=](){
+        connect(gameTimer, &QTimer::timeout, this,[=](){
             if(m_isPaused==false)
                 gameRun(); // 定时器触发时调用游戏运行函数
         });
@@ -35,6 +36,7 @@ void GamePlay::initMenu()
     //接收menu的信号
     connect(m_gameMenu, &GameMenu::gameResume,this, [=](){
         m_gameMenu->hide();
+        this->setFocus();
         m_isPaused = false;
     });
 
@@ -74,9 +76,9 @@ void GamePlay::gameRun()
     // 检查游戏是否结束
     if (m_Snake.m_CantCon)
     {
-        if(m_CurrentScore>m_HighScore)
+        if(m_CurrentScore>m_highScore)
         {
-            m_HighScore = m_CurrentScore;
+            m_highScore = m_CurrentScore;
         }
         m_isPaused = true;//暂时用这个,不然一直进去
         emit gameOver(); // 发射游戏结束信号
@@ -102,11 +104,39 @@ void GamePlay::isEat()
 // 绘制游戏界面
 void GamePlay::paintEvent(QPaintEvent *)
 {
-    QPainter painter(this);
+
     // 设置画笔和画刷
-    QPen pen; pen.setStyle(Qt::NoPen);
-    QBrush brush; brush.setColor(QColor(0,255,0,120)); brush.setStyle(Qt::SolidPattern);
-    painter.setPen(pen); painter.setBrush(brush);
+    // QPen pen;
+    // pen.setStyle(Qt::NoPen);
+    //QBrush brush; brush.setColor(QColor(0,255,0,120));
+    //brush.setStyle(Qt::SolidPattern);
+    //painter.setPen(pen); painter.setBrush(brush);
+    //////////////////////////
+    QColor snakeColor;
+    switch (m_Snake.getColorEnum())
+    {
+    case SnakeColor_Red:
+        snakeColor = Qt::red;
+        break;
+    case SnakeColor_Green:
+        snakeColor = Qt::green;
+        break;
+    case SnakeColor_Black:
+        snakeColor = Qt::black;
+        break;
+    case SnakeColor_Yellow:
+        snakeColor = Qt::yellow;
+        break;
+    }
+
+    QPainter painter(this);
+    QBrush brush(snakeColor, Qt::SolidPattern);
+    painter.setBrush(brush);
+
+    // 不需要设置画笔，因为你不绘制蛇的边框（Qt::NoPen表示没有边框）
+    QPen pen;
+    pen.setStyle(Qt::NoPen);
+    painter.setPen(pen);
     // 绘制蛇的身体
     for (auto it = m_Snake.m_Body.begin(); it != m_Snake.m_Body.end(); ++it)
     {//这个game_step可以理解为游戏的方格长度,或者理解为像素
@@ -138,7 +168,7 @@ void GamePlay::paintEvent(QPaintEvent *)
 
 // 处理键盘按键事件
 void GamePlay::keyPressEvent(QKeyEvent *event)
-{
+{qDebug("按了按键");
     // 根据按键改变蛇的移动方向
     switch(event->key())
     {
@@ -212,7 +242,7 @@ void GamePlay::paint_CurrentScore(QPainter & painter)
     // 绘制历史最高分数
 
 
-    QString highScoreText = QString("历史最高分数:%1").arg(m_HighScore);
+    QString highScoreText = QString("历史最高分数:%1").arg(m_highScore);
     painter.drawText(scoreX, scoreY, highScoreText);
 
 

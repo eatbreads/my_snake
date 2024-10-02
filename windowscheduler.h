@@ -16,6 +16,10 @@
 #include "gameplay.h"
 #include "gameend.h"
 #include "gamediffwindow.h"
+#include "ConfigFile.h"
+#include "gameskin.h"
+class ConfigFile;
+
 class WindowScheduler : public QObject
 {
     Q_OBJECT
@@ -40,7 +44,7 @@ private:
     Widget *gameStartWindow;
     GamePlay *gamePlayWindow;
     GameEnd *gameEndWindow;
-    // GameSkinWindow *gameSkinWindow;
+    GameSkin *gameSkinWindow;
     GameDiffWindow *gameDiffWindow;
 
     void initializeWindows();

@@ -2,6 +2,7 @@ debug/food.o
 debug/gamediffwindow.o
 debug/gameend.o
 debug/gameplay.o
+debug/gameskin.o
 debug/main.o
 debug/mypoint.o
 debug/mypushbutton.o
@@ -9,10 +10,12 @@ debug/snake.o
 debug/widget.o
 debug/windowscheduler.o
 debug/qrc_qmake_qmake_qm_files.o
+debug/moc_ConfigFile.o
 debug/moc_gamediffwindow.o
 debug/moc_gameend.o
 debug/moc_gamemenu.o
 debug/moc_gameplay.o
+debug/moc_gameskin.o
 debug/moc_mypushbutton.o
 debug/moc_widget.o
 debug/moc_windowscheduler.o

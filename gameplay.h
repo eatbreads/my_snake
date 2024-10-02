@@ -14,6 +14,7 @@
 #include <QString>
 #include"food.h"
 #include "gamemenu.h"
+#include "ConfigFile.h"
 //int m_HighScore = 0;
 class GamePlay : public QWidget
 {
@@ -42,7 +43,7 @@ public:
     void paintEvent(QPaintEvent *);//绘图
 
     int m_CurrentScore=0;  //当前分数
-    int m_HighScore=0;    //最高分数榜单
+    int m_highScore= 0;
 
     void paint_CurrentScore(QPainter & painter);
 

@@ -4,6 +4,7 @@
 #include <QLocale>
 #include <QTranslator>
 #include "windowscheduler.h"
+void initSystem();
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -17,7 +18,17 @@ int main(int argc, char *argv[])
             break;
         }
     }
+    ///////////////////////////////////////////
 
+
+    initSystem();
     WindowScheduler m_scheduler;//创建界面调度器
     return a.exec();
+}
+
+void initSystem()
+{
+    ConfigFile& m_configfile= ConfigFile::getInstance();
+    m_configfile.loadConfig("E:\\qt_project\\eat_snake\\my_snake\\config.json");
+
 }

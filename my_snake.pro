@@ -13,6 +13,7 @@ SOURCES += \
     gamediffwindow.cpp \
     gameend.cpp \
     gameplay.cpp \
+    gameskin.cpp \
     main.cpp \
     mypoint.cpp \
     mypushbutton.cpp \
@@ -21,12 +22,14 @@ SOURCES += \
     windowscheduler.cpp
 
 HEADERS += \
+    ConfigFile.h \
     config.h \
     food.h \
     gamediffwindow.h \
     gameend.h \
     gamemenu.h \
     gameplay.h \
+    gameskin.h \
     mypoint.h \
     mypushbutton.h \
     snake.h \

@@ -40,33 +40,49 @@ namespace {
 struct qt_meta_stringdata_CLASSGameDiffWindowENDCLASS_t {};
 static constexpr auto qt_meta_stringdata_CLASSGameDiffWindowENDCLASS = QtMocHelpers::stringData(
     "GameDiffWindow",
-    "onDifficultyButtonClicked",
+    "gameReturn",
     "",
+    "seteasy",
+    "setmedium",
+    "sethard",
+    "sethell",
     "onBackButtonClicked",
     "onConfirmButtonClicked"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSGameDiffWindowENDCLASS_t {
-    uint offsetsAndSizes[10];
+    uint offsetsAndSizes[18];
     char stringdata0[15];
-    char stringdata1[26];
+    char stringdata1[11];
     char stringdata2[1];
-    char stringdata3[20];
-    char stringdata4[23];
+    char stringdata3[8];
+    char stringdata4[10];
+    char stringdata5[8];
+    char stringdata6[8];
+    char stringdata7[20];
+    char stringdata8[23];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSGameDiffWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
 Q_CONSTINIT static const qt_meta_stringdata_CLASSGameDiffWindowENDCLASS_t qt_meta_stringdata_CLASSGameDiffWindowENDCLASS = {
     {
         QT_MOC_LITERAL(0, 14),  // "GameDiffWindow"
-        QT_MOC_LITERAL(15, 25),  // "onDifficultyButtonClicked"
-        QT_MOC_LITERAL(41, 0),  // ""
-        QT_MOC_LITERAL(42, 19),  // "onBackButtonClicked"
-        QT_MOC_LITERAL(62, 22)   // "onConfirmButtonClicked"
+        QT_MOC_LITERAL(15, 10),  // "gameReturn"
+        QT_MOC_LITERAL(26, 0),  // ""
+        QT_MOC_LITERAL(27, 7),  // "seteasy"
+        QT_MOC_LITERAL(35, 9),  // "setmedium"
+        QT_MOC_LITERAL(45, 7),  // "sethard"
+        QT_MOC_LITERAL(53, 7),  // "sethell"
+        QT_MOC_LITERAL(61, 19),  // "onBackButtonClicked"
+        QT_MOC_LITERAL(81, 22)   // "onConfirmButtonClicked"
     },
     "GameDiffWindow",
-    "onDifficultyButtonClicked",
+    "gameReturn",
     "",
+    "seteasy",
+    "setmedium",
+    "sethard",
+    "sethell",
     "onBackButtonClicked",
     "onConfirmButtonClicked"
 };
@@ -80,19 +96,31 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSGameDiffWindowENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    0,   56,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   32,    2, 0x08,    1 /* Private */,
-       3,    0,   33,    2, 0x08,    2 /* Private */,
-       4,    0,   34,    2, 0x08,    3 /* Private */,
+       3,    0,   57,    2, 0x08,    2 /* Private */,
+       4,    0,   58,    2, 0x08,    3 /* Private */,
+       5,    0,   59,    2, 0x08,    4 /* Private */,
+       6,    0,   60,    2, 0x08,    5 /* Private */,
+       7,    0,   61,    2, 0x08,    6 /* Private */,
+       8,    0,   62,    2, 0x08,    7 /* Private */,
+
+ // signals: parameters
+    QMetaType::Void,
 
  // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -109,7 +137,15 @@ Q_CONSTINIT const QMetaObject GameDiffWindow::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSGameDiffWindowENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<GameDiffWindow, std::true_type>,
-        // method 'onDifficultyButtonClicked'
+        // method 'gameReturn'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'seteasy'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'setmedium'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'sethard'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'sethell'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'onBackButtonClicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -125,10 +161,23 @@ void GameDiffWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         auto *_t = static_cast<GameDiffWindow *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->onDifficultyButtonClicked(); break;
-        case 1: _t->onBackButtonClicked(); break;
-        case 2: _t->onConfirmButtonClicked(); break;
+        case 0: _t->gameReturn(); break;
+        case 1: _t->seteasy(); break;
+        case 2: _t->setmedium(); break;
+        case 3: _t->sethard(); break;
+        case 4: _t->sethell(); break;
+        case 5: _t->onBackButtonClicked(); break;
+        case 6: _t->onConfirmButtonClicked(); break;
         default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (GameDiffWindow::*)();
+            if (_t _q_method = &GameDiffWindow::gameReturn; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
         }
     }
     (void)_a;
@@ -153,14 +202,20 @@ int GameDiffWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 7)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 3;
+        _id -= 7;
     }
     return _id;
+}
+
+// SIGNAL 0
+void GameDiffWindow::gameReturn()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 QT_WARNING_POP

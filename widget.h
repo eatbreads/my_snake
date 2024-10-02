@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "mypushbutton.h"
+#include "ConfigFile.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class Widget;

@@ -2,6 +2,7 @@ release/food.o
 release/gamediffwindow.o
 release/gameend.o
 release/gameplay.o
+release/gameskin.o
 release/main.o
 release/mypoint.o
 release/mypushbutton.o
@@ -9,10 +10,12 @@ release/snake.o
 release/widget.o
 release/windowscheduler.o
 release/qrc_qmake_qmake_qm_files.o
+release/moc_ConfigFile.o
 release/moc_gamediffwindow.o
 release/moc_gameend.o
 release/moc_gamemenu.o
 release/moc_gameplay.o
+release/moc_gameskin.o
 release/moc_mypushbutton.o
 release/moc_widget.o
 release/moc_windowscheduler.o

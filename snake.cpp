@@ -47,6 +47,8 @@ void Snake::nextSnake()
 void Snake::init()
 {
     m_CantCon=false;
+    color=m_config.getConfig("skin_color");
+    //qDebug()<<color;
     m_Body.clear();
     this->m_Head.setPoint(3,0);
     m_Head.setPoint(2,0);
@@ -60,4 +62,12 @@ void Snake::init()
 void Snake::eraseTail()
 {
     m_Body.erase(m_Body.begin());
+}
+
+SnakeColor Snake::getColorEnum() const {
+
+    if (color == "red") return SnakeColor_Red;
+    if (color == "green") return SnakeColor_Green;
+    if (color == "black") return SnakeColor_Black;
+    return SnakeColor_Yellow; // 假设这条蛇是绿色的
 }

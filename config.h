@@ -12,3 +12,5 @@
 #define GAME_WIDTH 20
 #define GAME_HEIGHT 15
 #define GAME_STEP 30
+
+//E:\\qt_project\\eat_snake\\my_snake

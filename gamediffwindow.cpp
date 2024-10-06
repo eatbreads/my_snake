@@ -92,31 +92,35 @@ void GameDiffWindow::seteasy()
 {
     ConfigFile::getInstance().setConfig("difficulty","easy");
     ConfigFile::getInstance().setConfig("speed","100");
+    ConfigFile::getInstance().setConfig("food_target","3");
     showSuccessMessage("难度设置为简单");
-    m_gamePlay->setDifficulty();
+    //m_gamePlay->setDifficulty();
 }
 void GameDiffWindow::setmedium()
 {
     ConfigFile::getInstance().setConfig("difficulty","medium");
     ConfigFile::getInstance().setConfig("speed","80");
+    ConfigFile::getInstance().setConfig("food_target","5");
     showSuccessMessage("难度设置为中等");
-    m_gamePlay->setDifficulty();
+    //m_gamePlay->setDifficulty();
 }
 void GameDiffWindow::sethard()
 {
     ConfigFile::getInstance().setConfig("difficulty","hard");//这个难度应该要跟着对应的尺寸设计障碍物
     ConfigFile::getInstance().setConfig("speed","50");
-    //ConfigFile::getInstance().setConfig("obstacle_num","50");
+    ConfigFile::getInstance().setConfig("food_target","10");
     showSuccessMessage("难度设置为困难");
-    m_gamePlay->setDifficulty();
+    //m_gamePlay->setDifficulty();
 }
 void GameDiffWindow::sethell()
 {
+    showSuccessMessage("难度设置为地狱");
+
     ConfigFile::getInstance().setConfig("difficulty","hell");
     ConfigFile::getInstance().setConfig("speed","30");
-    //ConfigFile::getInstance().setConfig("obstacle_num","200");
+    ConfigFile::getInstance().setConfig("food_target","15");
     showSuccessMessage("难度设置为地狱");
-    m_gamePlay->setDifficulty();
+    //m_gamePlay->setDifficulty();
 }
 void GameDiffWindow::onBackButtonClicked()
 {

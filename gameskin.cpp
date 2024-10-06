@@ -11,10 +11,10 @@ GameSkin::GameSkin(QWidget *parent) : QWidget(parent)
     QPixmap tempPixmap = QPixmap::fromImage(image);
     this->setWindowIcon(QIcon(tempPixmap));
     // 初始化按钮
-    redButton = new QPushButton("Red", this);
-    greenButton = new QPushButton("Green", this);
-    blackButton = new QPushButton("Black", this);
-    yellowButton = new QPushButton("Yellow", this);
+    redButton = new QPushButton(ConfigFile::getInstance().getConfig("red_button_name"), this);
+    greenButton = new QPushButton(ConfigFile::getInstance().getConfig("green_button_name"), this);
+    blackButton = new QPushButton(ConfigFile::getInstance().getConfig("black_button_name"), this);
+    yellowButton = new QPushButton(ConfigFile::getInstance().getConfig("yellow_button_name"), this);
     backButton = new QPushButton("回退", this);
     confirmButton = new QPushButton("确定", this);
 
@@ -67,6 +67,8 @@ void GameSkin::setred()
 {
     // 设置红色皮肤逻辑（这里只是示例）
     m_config.setConfig("skin_color","red");
+    m_config.setConfig("red_button_name","红色(默认颜色)");
+    redButton->setText("红色(已购买)");
     showSuccessMessage("Red skin set!");
 }
 
@@ -74,6 +76,8 @@ void GameSkin::setgreen()
 {
     // 设置绿色皮肤逻辑
     m_config.setConfig("skin_color","green");
+    m_config.setConfig("red_button_name","绿色(已购买)");
+    greenButton->setText("绿色(已购买)");
     showSuccessMessage("Green skin set!");
 }
 
@@ -81,6 +85,8 @@ void GameSkin::setblack()
 {
     // 设置黑色皮肤逻辑
     m_config.setConfig("skin_color","black");
+    m_config.setConfig("red_button_name","黑色(已购买)");
+    blackButton->setText("黑色(已购买)");
     showSuccessMessage("Black skin set!");
 }
 
@@ -88,6 +94,8 @@ void GameSkin::setyellow()
 {
     // 设置黄色皮肤逻辑
     m_config.setConfig("skin_color","yellow");
+    m_config.setConfig("red_button_name","黄色(已购买)");
+    yellowButton->setText("黄色(已购买)");
     showSuccessMessage("Yellow skin set!");
 }
 
@@ -111,7 +119,7 @@ void GameSkin::setButtonIcon(QPushButton *button, const QString &imagePath)
     QIcon icon(pixmap);
     button->setIcon(icon);
     button->setIconSize(pixmap.size());
-   // button->setText(""); // 如果有图标，可以移除文本
+    // button->setText(""); // 如果有图标，可以移除文本
 }
 
 // void GameSkin::setbuttonSize(QPushButton* button, int height)

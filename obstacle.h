@@ -22,10 +22,10 @@ public:
 
     QString is_rand=ConfigFile::getInstance().getConfig("is_rand");
 
-    Obstacle();
+    Obstacle(QString map_name);
     bool hasObstacle(int x,int y);
     void placeObstacleRandomly(); // 随机生成障碍物位置，避免蛇的出生位置和已有障碍物
-    void placeObstacleFromString(const QString& obstacleString); // 根据字符串生成障碍物位置
+    void placeObstacleFromVector(QString map_name); // 根据bool数组
     void show();
 };
 

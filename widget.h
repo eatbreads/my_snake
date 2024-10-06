@@ -20,10 +20,14 @@ public:
     MyPushButton * m_GameStartBut;//开始按钮指针
     MyPushButton * m_setDifficult;
     MyPushButton * m_setSkin;
+    MyPushButton * m_setObstacle;
+    MyPushButton * m_selectLevel;
 signals:
     void startGame();
     void setSkin();
     void setdif();
+    void setObs();
+    void selectLevel();
 private:
     Ui::Widget *ui;
 };

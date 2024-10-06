@@ -1,13 +1,13 @@
 #include "obstacle.h"
 
-Obstacle::Obstacle()
+Obstacle::Obstacle(QString map_name)
 :arr(GAME_HEIGHT, std::vector<bool>(GAME_WIDTH, false))
 {
     //memset(arr, 0, sizeof(arr)); // 使用memset初始化arr数组为全0，表示游戏区域开始时都是空的
     //m_NoObstacle = false; // 表示现在没有障碍物短缺
     if(is_rand=="yes")
         placeObstacleRandomly();
-    else placeObstacleFromString(ConfigFile::getInstance().getConfig("obstacle_string"));
+    else placeObstacleFromVector(map_name);
 
 }
 
@@ -26,9 +26,10 @@ void Obstacle::placeObstacleRandomly()
     }
 }
 
-void Obstacle::placeObstacleFromString(const QString& obstacleString)
+void Obstacle::placeObstacleFromVector(QString map_name)
 {
 
+    arr=ConfigFile::getInstance().getMap(map_name.toStdString());
 }
 
 bool Obstacle::hasObstacle(int x,int y)

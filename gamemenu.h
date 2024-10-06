@@ -15,17 +15,17 @@ public:
 
         // 创建按钮
         QPushButton *pauseButton = new QPushButton("继续", this);
-        QPushButton *saveButton = new QPushButton("存档", this);
+        //QPushButton *saveButton = new QPushButton("存档", this);
         QPushButton *returnButton = new QPushButton("主菜单", this);
 
         // 将按钮添加到布局
         layout->addWidget(pauseButton);
-        layout->addWidget(saveButton);
+        //layout->addWidget(saveButton);
         layout->addWidget(returnButton);
 
         // 连接信号和槽
         connect(pauseButton, &QPushButton::clicked, this,[=](){emit gameResume();});
-        connect(saveButton, &QPushButton::clicked, this,[=](){emit gameSave();});
+        //connect(saveButton, &QPushButton::clicked, this,[=](){emit gameSave();});
         connect(returnButton, &QPushButton::clicked, this,[=](){emit gameReturn();});
 
         // 设置窗口属性

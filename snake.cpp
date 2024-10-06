@@ -80,16 +80,17 @@ void Snake::init()
     //qDebug()<<color;
     m_Body.clear();
     this->m_Head.setPoint(3,0);
-    m_Head.setPoint(2,0);
-    m_Body.push_back(MyPoint(0,0));
-    m_Body.push_back(MyPoint(1,0));
-    m_Body.push_back(MyPoint(2,0));
+    m_Head.setPoint(3,1);
+    m_Body.push_back(MyPoint(1,1));
+    m_Body.push_back(MyPoint(2,1));
+    m_Body.push_back(MyPoint(3,1));
     m_Direction='d';//初始方向向右
 
 }
 
 void Snake::eraseTail()
 {
+    if(m_Body.size()>=4)//最少要四个才能被减去,即最短应该为3
     m_Body.erase(m_Body.begin());
 }
 

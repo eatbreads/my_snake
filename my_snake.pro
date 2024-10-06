@@ -9,15 +9,18 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    config.cpp \
     food.cpp \
     gamediffwindow.cpp \
     gameend.cpp \
     gameplay.cpp \
     gameskin.cpp \
+    levelselector.cpp \
     main.cpp \
     mypoint.cpp \
     mypushbutton.cpp \
     obstacle.cpp \
+    obstaclesetter.cpp \
     snake.cpp \
     widget.cpp \
     windowscheduler.cpp
@@ -31,9 +34,11 @@ HEADERS += \
     gamemenu.h \
     gameplay.h \
     gameskin.h \
+    levelselector.h \
     mypoint.h \
     mypushbutton.h \
     obstacle.h \
+    obstaclesetter.h \
     snake.h \
     widget.h \
     windowscheduler.h
